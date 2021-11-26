@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371326640286",
+    "project_id": "agventure-e657c",
+    "storage_bucket": "agventure-e657c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371326640286:android:ff7ddd8cbb6cd5a8d81b8f",
+        "android_client_info": {
+          "package_name": "com.example.sanket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371326640286-989k82tsjtilf7knnvcu5vrqg9p8fmdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_1Dh_iE_2rS9Faps8pgE42GOYFLfFLsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371326640286-989k82tsjtilf7knnvcu5vrqg9p8fmdl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
