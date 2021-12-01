@@ -36,7 +36,7 @@ class product extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, "/detail",
-                                  arguments: Crop(agro));
+                                  arguments: (agro));
                             },
                             child: Row(
                               children: <Widget>[
