@@ -1,12 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class registration_page extends StatelessWidget {
   @override
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("user");
+  final TextEditingController _textEditingController1 = TextEditingController();
+  final TextEditingController _textEditingController2 = TextEditingController();
+  final TextEditingController _textEditingController3 = TextEditingController();
+  final TextEditingController _textEditingController4 = TextEditingController();
+  final TextEditingController _textEditingController5 = TextEditingController();
   Widget build(BuildContext context) {
     String email = "";
     String password = "";
-    var context2 = context;
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
@@ -36,13 +44,13 @@ class registration_page extends StatelessWidget {
                 SizedBox(
                   height: 40,
                 ),
-                register(
-                    "Name", "Enter Your Name", false, Icon(Icons.people), ""),
+                register("Name", "Enter Your Name", false, Icon(Icons.people),
+                    "", _textEditingController1),
                 SizedBox(
                   height: 10,
                 ),
                 register("Number", "Enter Your Mobile Number", false,
-                    Icon(Icons.contact_page), ""),
+                    Icon(Icons.contact_page), "", _textEditingController2),
                 SizedBox(
                   height: 10,
                 ),
@@ -56,16 +64,23 @@ class registration_page extends StatelessWidget {
                     onChanged: (value) {
                       email = value;
                     },
+                    controller: _textEditingController3,
                     obscureText: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "please Enter some text";
+                      }
+                    },
                     style: TextStyle(fontSize: 15),
                     decoration: InputDecoration(
-                        labelText: "USERNAME",
+                        labelText: "Email ID",
                         labelStyle: TextStyle(color: Colors.black),
+                        prefixIcon: Icon(Icons.email_outlined),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                             borderSide:
                                 BorderSide(color: Colors.amber, width: 2)),
-                        hintText: "Enter your username",
+                        hintText: "Enter your Email Address",
                         contentPadding: EdgeInsets.symmetric(horizontal: 20)),
                   ),
                 ),
@@ -82,10 +97,17 @@ class registration_page extends StatelessWidget {
                     onChanged: (value) {
                       password = value;
                     },
+                    controller: _textEditingController4,
                     obscureText: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "please Enter some text";
+                      }
+                    },
                     style: TextStyle(fontSize: 15),
                     decoration: InputDecoration(
-                        labelText: "PASSWORD",
+                        labelText: "Password",
+                        prefixIcon: Icon(Icons.password_sharp),
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
@@ -98,13 +120,24 @@ class registration_page extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                register("Confirm Password", "Confirmed Your Password", true,
-                    Icon(Icons.password_outlined), "confirmedp"),
+                register(
+                    "Confirm Password",
+                    "Confirmed Your Password",
+                    true,
+                    Icon(Icons.password_outlined),
+                    "confirmedp",
+                    _textEditingController5),
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 InkWell(
                   onTap: () async {
+                    await collectionReference.add({
+                      'Name': _textEditingController1.text,
+                      'MObile No': _textEditingController2.text,
+                      'email': _textEditingController3.text,
+                      'password': _textEditingController4.text
+                    }).then((value) => _textEditingController1.clear());
                     try {
                       UserCredential userCredential = await FirebaseAuth
                           .instance
@@ -127,12 +160,12 @@ class registration_page extends StatelessWidget {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.blueAccent,
                         border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.circular(50)),
                   ),
@@ -146,8 +179,8 @@ class registration_page extends StatelessWidget {
   }
 }
 
-Widget register(
-    String labelText, String hintText, bool x, Icon myicon, String y) {
+Widget register(String labelText, String hintText, bool x, Icon myicon,
+    String y, TextEditingController z) {
   return Container(
     height: 60,
     width: 380,
@@ -159,7 +192,13 @@ Widget register(
         String y = value;
       },
       obscureText: x,
+      controller: z,
       style: TextStyle(fontSize: 15),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "please Enter some text";
+        }
+      },
       decoration: InputDecoration(
           labelText: labelText,
           labelStyle: TextStyle(color: Colors.black),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sanket/app_screen/Reset.dart';
 import 'package:sanket/app_screen/login.dart';
 import 'package:sanket/app_screen/plantList.dart';
 
@@ -13,8 +14,8 @@ import 'package:sanket/app_screen/Nursery_Searchbar.dart';
 import 'package:sanket/app_screen/Location.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:google_sign_in/google_sign_in.dart';
+import 'app_screen/detailsofproduct.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,10 +44,11 @@ class MyApp extends StatelessWidget {
               '/Nursery': (context) => nursery(),
               '/sanket': (context) => Home(),
               '/register': (context) => registration_page(),
-              '/password': (context) => password_page(),
+              '/password': (context) => ResetP(),
               '/location': (context) => Location(),
               '/plant': (context) => HomePage(),
               '/xyz': (context) => product(),
+              '/detail': (context) => Detail()
             },
           );
         }

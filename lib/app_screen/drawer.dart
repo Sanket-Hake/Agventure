@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sanket/app_screen/drop_down.dart';
@@ -49,8 +50,6 @@ class MainDrawer extends StatelessWidget {
             Divider(
               color: Colors.black,
             ),
-            
-            
             ListTile(
               leading: Icon(Icons.account_box_rounded),
               tileColor: Colors.blue[200],
@@ -103,32 +102,62 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.login,
-              ),
-              tileColor: Colors.blue[200],
-              title: Text(
-                "Log In",
-                style: TextStyle(
-                  fontSize: 17,
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/");
+              },
+              child: ListTile(
+                leading: Icon(
+                  Icons.login,
+                ),
+                tileColor: Colors.blue[200],
+                title: Text(
+                  "Log In",
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              tileColor: Colors.blue[200],
-              title: Text(
-                "Log Out",
-                style: TextStyle(
-                  fontSize: 17,
+            InkWell(
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, "/");
+              },
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                tileColor: Colors.blue[200],
+                title: Text(
+                  "Log Out",
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
                 ),
               ),
             ),
-            
           ],
         ),
       )),
     );
   }
+
+  void setState(Future<Null> Function() param0, void param1) {}
+}
+
+void signout(BuildContext, Context) {
+  var alertDialog = Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+      child: AlertDialog(
+          title: Text(
+        'Sign Out Completed',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      )));
+
+  showDialog(
+      context: Context,
+      builder: (context) {
+        return alertDialog;
+      });
 }

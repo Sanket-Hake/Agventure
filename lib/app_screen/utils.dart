@@ -5,3 +5,8 @@ class Crop {
 
   Crop(this.Agventure);
 }
+
+class name {
+  late List Name;
+  name(this.Name);
+}
