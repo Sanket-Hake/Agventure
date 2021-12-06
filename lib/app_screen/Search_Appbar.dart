@@ -4,37 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sanket/app_screen/drawer.dart';
-import 'package:sanket/rough_screen/sanket.dart';
+import 'package:sanket/app_screen/Nursry_Home.dart';
 import 'package:sanket/app_screen/listview_Nursery.dart';
-import 'package:sanket/app_screen/drop_down.dart';
-
-class nursery extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red[500],
-        elevation: 20,
-        title: Text(
-          "AGVENTURE",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearch());
-            },
-          ),
-        ],
-      ),
-      drawer: MainDrawer(),
-      body: Container(
-        child: getListview(),
-      ),
-    );
-  }
-}
+import 'package:sanket/app_screen/Location_2.dart';
 
 class DataSearch extends SearchDelegate<String> {
   @override
@@ -53,7 +25,6 @@ class DataSearch extends SearchDelegate<String> {
   ];
 
   List<Widget>? buildActions(BuildContext context) {
-   
     return [
       IconButton(
         icon: Icon(Icons.clear),

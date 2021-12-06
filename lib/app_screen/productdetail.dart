@@ -4,7 +4,7 @@ import 'package:sanket/app_screen/productdetail.dart';
 import 'package:sanket/app_screen/utils.dart';
 
 class product extends StatelessWidget {
-  var firestoreDB = FirebaseFirestore.instance.collection("cropList").snapshots();
+  var firestoreDB = FirebaseFirestore.instance.collection("PIlist").snapshots();
  
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class product extends StatelessWidget {
                 itemCount: Data.Agventure.length,
                 itemBuilder: (BuildContext context, int index) {
                   List agro =
-                      (snapshot.data! as QuerySnapshot).docs[index]["Agventure"];
+                      (snapshot.data! as QuerySnapshot).docs[index]["plant"];
                   // List Sank = Data.Agventure[index]['plantName'];
                   return SingleChildScrollView(
                     scrollDirection: Axis.vertical,
@@ -36,7 +36,7 @@ class product extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, "/detail",
-                                  arguments: (agro));
+                                  arguments:name(agro));
                             },
                             child: Row(
                               children: <Widget>[

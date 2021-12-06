@@ -18,9 +18,12 @@ class getListview extends StatelessWidget {
           return ListView.builder(
             itemCount: (snapshot.data! as QuerySnapshot).docs.length,
             itemBuilder: (BuildContext context, int index) {
+              // String sank =snapshot.data! as QuerySnapshot).docs[index]['nurseryName']
               List agventure =
                   (snapshot.data! as QuerySnapshot).docs[index]["Agventure"];
-              // List agro = (snapshot.data! as QuerySnapshot).docs[index]["Agro"];
+              // String Sank =
+              //     "${(snapshot.data! as QuerySnapshot).docs[index]['nurseryName']}";
+              // // List agro = (snapshot.data! as QuerySnapshot).docs[index]["Agro"];
               return SingleChildScrollView(
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                 child: Card(
@@ -37,6 +40,7 @@ class getListview extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
+                            // print("${Sank}");
                             Navigator.pushNamed(context, "/xyz",
                                 arguments: Crop(agventure));
                           },
