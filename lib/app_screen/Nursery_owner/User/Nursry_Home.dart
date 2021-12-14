@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sanket/app_screen/Search_Appbar.dart';
-import 'package:sanket/app_screen/drawer.dart';
-import 'package:sanket/app_screen/ListView_N.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/Search_Appbar.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/drawer.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/ListView_N.dart';
 import 'package:sanket/model/category.dart';
 
 class home_Nursery extends StatefulWidget {
@@ -26,14 +26,15 @@ class _home_NurseryState extends State<home_Nursery>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.green,
           title: Text(
             "Nurseries",
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           bottom: TabBar(isScrollable: true, controller: _controller, tabs: [
             Tab(text: "Blossom Valley "),
-            Tab(text: "EverGreen "),
-            Tab(text: "Harmony Garden"),
+            Tab(text: "Tanuja Hightech"),
+            Tab(text: "Evergreen"),
             Tab(text: "Paradise Nursery"),
             Tab(text: "Garden Gate")
           ]),
@@ -48,26 +49,11 @@ class _home_NurseryState extends State<home_Nursery>
         ),
         drawer: MainDrawer(),
         body: TabBarView(controller: _controller, children: <Widget>[
-          Nursery1(
-            item_count: BlossomValley.length,
-            x: BlossomValley,
-          ),
-          Nursery1(
-            item_count: BlossomValley.length,
-            x: BlossomValley,
-          ),
-          Nursery1(
-            item_count: BlossomValley.length,
-            x: BlossomValley,
-          ),
-          Nursery1(
-            item_count: BlossomValley.length,
-            x: BlossomValley,
-          ),
-          Nursery1(
-            item_count: BlossomValley.length,
-            x: BlossomValley,
-          ),
+          homescreen(Nurseryname: "Blossom Valley"),
+          homescreen(Nurseryname: "Tanuja Hightech"),
+          homescreen(Nurseryname: "Evergreen"),
+          homescreen(Nurseryname: "Paradise Nursery"),
+          homescreen(Nurseryname: "Garden Gate")
         ]));
   }
 }

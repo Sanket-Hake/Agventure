@@ -68,13 +68,16 @@ class _ProductSliderState extends State<ProductSlider> {
             width: MediaQuery.of(context).size.width,
             child: CarouselSlider(
               options: CarouselOptions(
-              // onPageChanged: (value) {
-              //   setActiveDot(value);
-              // },
-               
-              autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-              autoPlayAnimationDuration: Duration(seconds: 2),
-              viewportFraction: 1.0,) ,
+                // onPageChanged: (value) {
+                //   setActiveDot(value);
+                // },
+
+                autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                autoPlayAnimationDuration: Duration(seconds: 2),
+                viewportFraction: 1.0,
+              ),
               items: widget.items.map((item) {
                 return Builder(
                   builder: (BuildContext context) {
@@ -93,7 +96,6 @@ class _ProductSliderState extends State<ProductSlider> {
                   },
                 );
               }).toList(),
-              
             ),
           ),
           Row(

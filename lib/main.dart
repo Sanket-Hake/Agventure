@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sanket/app_screen/Reset.dart';
-import 'package:sanket/app_screen/login.dart';
-import 'package:sanket/app_screen/Nursry_Home.dart';
-import 'package:sanket/app_screen/plantList.dart';
-import 'package:sanket/app_screen/productdetail.dart';
+import 'package:lottie/lottie.dart';
+import 'package:sanket/app_screen/Nursery_owner/Owner_login.dart';
+import 'package:sanket/app_screen/Nursery_owner/Add_Product.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/Reset.dart';
+import 'package:sanket/app_screen/first.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/UserLogin.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/Nursry_Home.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/plants_detail.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/productspage.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/search_By_Plant.dart';
+import 'package:sanket/rough_screen/productdetail.dart';
 import 'package:sanket/rough_screen/plants.dart';
-import 'package:sanket/app_screen/registration.dart';
-import 'package:sanket/app_screen/Search_Appbar.dart';
-import 'package:sanket/app_screen/Location.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/registration.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/Search_Appbar.dart';
+// import 'package:sanket/app_screen/Location.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'app_screen/detailsofproduct.dart';
+import 'app_screen/Nursery_owner/Nursery_List.dart';
+import 'app_screen/Nursery_owner/Nursery_Regestration.dart';
+import 'rough_screen/detailsofproduct.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 Future main() async {
@@ -36,30 +44,38 @@ class MyApp extends StatelessWidget {
         // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
-            home: AnimatedSplashScreen(
-                duration: 3000,
-                splash: Container(
-                   decoration: BoxDecoration(
-                     color: Colors.lightGreenAccent
-                   ),
-                  height : 1000 ,
-                  width: 1000,
-                  child: Image.asset('assets/images/agventurelogo.png' ,fit: BoxFit.scaleDown, )
-                  ),
-                nextScreen: login_page(),
-                splashTransition: SplashTransition.rotationTransition ,
-                backgroundColor: Colors.lightGreenAccent),
             debugShowCheckedModeBanner: false,
-            initialRoute: '/',
+            // home: AnimatedSplashScreen(
+            //     duration: 3000,
+            //     splash: Splash(),
+            //     // splash: Container(
+            //     //     decoration: BoxDecoration(color: Colors.green),
+            //     //     child: Image.asset(
+            //     //       'assets/images/agventurelogo.png',
+            //     //       fit: BoxFit.scaleDown,
+            //     //     )),
+            //     nextScreen: Choose(),
+            //     splashTransition: SplashTransition.fadeTransition,
+            //     backgroundColor: Colors.white),
+            // debugShowCheckedModeBanner: false,
+            // initialRoute: '/',
             routes: {
-              // '/': (context) => login_page() ,
+              '/': (context) => Choose(),
+              '/Login_page_User': (context) => login_page(),
+              '/login_page_Owner': (context) => login_page_Owner(),
+              '/addproduct': (context) => Add_Producct(),
               '/Nursery': (context) => home_Nursery(),
               '/register': (context) => registration_page(),
               '/password': (context) => ResetP(),
-              '/location': (context) => Location(),
               '/plant': (context) => HomePage(),
-              '/xyz': (context) => product(),
-              '/detail': (context) => Detail()
+              "/Nursery_Regestration": (context) => Nursery_Regestration(),
+              "/O_Nursery_List": (context) => O_Nursery_List(),
+
+              // '/location': (context) =>home_Nursery(),
+              // '/xyz': (context) => product(),
+              // '/detail': (context) => Detail()
+              // '/product_page': (context) => productpage(),
+              // '/product_detailpage': (context) => ProductDetailPage(),
             },
           );
         }
@@ -68,3 +84,74 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class SplashScreen extends StatefulWidget {
+  // const SplashScreen({required Key key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: (100)),
+      vsync: this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: ListView(
+          children: [
+            // Image(image: AssetImage("assets/images/agventurelogo.png")),
+            Container(
+              padding: EdgeInsets.only(bottom: 30),
+              child: Lottie.network(
+                'https://assets9.lottiefiles.com/packages/lf20_jfbnp4d2.json',
+                controller: _controller,
+                height: MediaQuery.of(context).size.height * 1,
+                animate: true,
+                onLoaded: (composition) {
+                  _controller
+                    ..duration = composition.duration
+                    ..forward().whenComplete(() => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Choose()),
+                        ));
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+// class Splash extends StatefulWidget {
+//   @override
+//   _SplashState createState() => _SplashState();
+// }
+
+// class _SplashState extends State<Splash> {
+//   @override
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//         width: MediaQuery.of(context).size.width,
+//         height: MediaQuery.of(context).size.height,
+//         child: Lottie.network(
+//             "https://assets10.lottiefiles.com/packages/lf20_30jzypta.json",
+//             fit: BoxFit.cover),
+//       ),
+//     );
+//   }
+// }

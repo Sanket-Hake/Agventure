@@ -8,18 +8,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = new GoogleSignIn();
 
-class login_page extends StatefulWidget {
-  login_page({Key? key}) : super(key: key);
+class login_page_Owner extends StatefulWidget {
+  login_page_Owner({Key? key}) : super(key: key);
 
   @override
   _login_pageState createState() => _login_pageState();
 }
 
-class _login_pageState extends State<login_page> {
+class _login_pageState extends State<login_page_Owner> {
   @override
   String email = "";
   String password = "";
@@ -31,16 +33,12 @@ class _login_pageState extends State<login_page> {
       home: Scaffold(
           backgroundColor: Colors.white,
           body: FadeInDownBig(
-            delay: Duration(milliseconds: 200),
+            delay: Duration(milliseconds: 600),
             child: Container(
               padding: EdgeInsets.all(4),
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-          
                   // InkWell(
                   //   child: Text(
                   //     "   Welcome to ",
@@ -52,26 +50,22 @@ class _login_pageState extends State<login_page> {
                   //         color: Colors.black),
                   //   ),
                   // ),
-          
-                  SizedBox(
-                    height: 10,
-                  ),
-          
+
                   Column(
                     children: [
                       Container(
-                          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Image.asset(
-                            'assets/images/Agventure.png',
-                            fit: BoxFit.cover,
-                          ))
+                        margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                        child: Lottie.network(
+                            "https://assets9.lottiefiles.com/private_files/lf30_fw6h59eu.json"),
+                        // child: Image(
+                        //   image: NetworkImage(
+                        //       "https://myiacs.com/images/admin.jpg"),
+                        //   fit: BoxFit.cover,
+                        // )
+                      )
                     ],
                   ),
-          
-                  SizedBox(
-                    height: 20,
-                  ),
-          
+
                   Container(
                     height: 50,
                     width: 380,
@@ -88,7 +82,8 @@ class _login_pageState extends State<login_page> {
                           labelStyle: TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide: BorderSide(color: Colors.green, width: 3),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 3),
                           ),
                           prefixIcon: Icon(Icons.people),
                           hintText: "Enter Your Username",
@@ -98,7 +93,7 @@ class _login_pageState extends State<login_page> {
                   SizedBox(
                     height: 10,
                   ),
-          
+
                   Container(
                     height: 50,
                     width: 380,
@@ -139,11 +134,11 @@ class _login_pageState extends State<login_page> {
                       Navigator.pushNamed(context, '/password');
                     },
                   ),
-          
+
                   SizedBox(
                     height: 25,
                   ),
-          
+
                   InkWell(
                     onTap: () async {
                       try {
@@ -154,7 +149,7 @@ class _login_pageState extends State<login_page> {
                         setState(() async {
                           logincomplete(BuildContext, context);
                           await Future.delayed(Duration(seconds: 1));
-                          Navigator.pushNamed(context, '/location');
+                          Navigator.pushNamed(context, '/Nursery_Regestration');
                         });
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
@@ -187,13 +182,13 @@ class _login_pageState extends State<login_page> {
                     ),
                   ),
                   Text("OR", textAlign: TextAlign.center),
-          
+
                   Container(
                     height: 100,
                     child: InkWell(
                       onTap: () {
-                        signInWithGoogle(context: context).then(
-                            (value) => Navigator.pushNamed(context, "/location"));
+                        signInWithGoogle(context: context).then((value) =>
+                            Navigator.pushNamed(context, "/location"));
                       },
                       child: Image(
                           image: NetworkImage(
@@ -201,11 +196,11 @@ class _login_pageState extends State<login_page> {
                           fit: BoxFit.fill),
                     ),
                   ),
-          
+
                   SizedBox(
-                    height: 25,
+                    height: 5,
                   ),
-          
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 80.0),
                     child: Row(
@@ -231,22 +226,25 @@ class _login_pageState extends State<login_page> {
                   ),
                   //
                   SizedBox(
-                    height: 30,
+                    height: 15,
                   ),
-          
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    child: TextButton.icon(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/location');
-                      },
-                      icon: Icon(
-                        Icons.skip_next_sharp,
-                        color: Colors.black,
-                      ),
-                      label: Text(
-                        'Skip',
-                        style: TextStyle(fontSize: 17, color: Colors.black),
+
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: TextButton.icon(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/Nursery_Regestration');
+                        },
+                        icon: Icon(
+                          Icons.skip_next_sharp,
+                          color: Colors.black,
+                        ),
+                        label: Text(
+                          'Next',
+                          style: TextStyle(fontSize: 17, color: Colors.black),
+                        ),
                       ),
                     ),
                   ),
@@ -261,7 +259,7 @@ class _login_pageState extends State<login_page> {
 void logincomplete(BuildContext, Context) {
   var alertDialog = AlertDialog(
       title: Text("Signed in completed"),
-      content: Text("Now you can Buy a product"));
+      content: Text("Now you can Add or Register your nursery"));
 
   showDialog(
       context: Context,

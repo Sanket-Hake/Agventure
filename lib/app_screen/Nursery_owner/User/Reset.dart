@@ -1,7 +1,7 @@
-import 'dart:ffi';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -21,11 +21,10 @@ class ResetP extends StatelessWidget {
             height: 10,
           ),
           Container(
-              child: Image(
-                  image: NetworkImage(
-                      "https://us.123rf.com/450wm/stuartphoto/stuartphoto1901/stuartphoto190100965/116118634-reset-password-button-to-redo-security-of-pc-new-code-for-securing-computer-3d-illustration.jpg?ver=6"))),
+              child: Lottie.network(
+                  "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json")),
           SizedBox(
-            height: 2,
+            height: 50,
           ),
           Container(
             padding: EdgeInsets.all(10),
@@ -49,7 +48,7 @@ class ResetP extends StatelessWidget {
                       contentPadding: EdgeInsets.symmetric(horizontal: 20)),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 // TextFormField(
                 //   // onChanged: (value) {

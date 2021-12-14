@@ -18,8 +18,19 @@ class registration_page extends StatelessWidget {
     String password = "";
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
-      ),
+          backgroundColor: Colors.green,
+          title: Container(
+            padding: EdgeInsets.only(right: 1, left: 24),
+            child: Text("REGSTRATION",
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                )),
+          ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)))),
       body: FadeInDownBig(
         child: ListView(
           children: [

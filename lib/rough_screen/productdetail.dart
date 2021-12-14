@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sanket/app_screen/productdetail.dart';
-import 'package:sanket/app_screen/utils.dart';
+import 'package:sanket/rough_screen/productdetail.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/utils.dart';
 
 class product extends StatelessWidget {
   var firestoreDB = FirebaseFirestore.instance.collection("PIlist").snapshots();

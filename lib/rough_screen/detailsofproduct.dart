@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sanket/app_screen/utils.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/utils.dart';
 
 class Detail extends StatelessWidget {
   const Detail({Key? key}) : super(key: key);

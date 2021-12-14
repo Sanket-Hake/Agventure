@@ -3,26 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:sanket/app_screen/drawer.dart';
-import 'package:sanket/app_screen/Nursry_Home.dart';
-import 'package:sanket/app_screen/listview_Nursery.dart';
-import 'package:sanket/app_screen/Location_2.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/drawer.dart';
+import 'package:sanket/app_screen/Nursery_owner/User/Nursry_Home.dart';
+import 'package:sanket/rough_screen/listview_Nursery.dart';
+
 
 class DataSearch extends SearchDelegate<String> {
   @override
-  final nursery = [
-    "Tanuja hightech nursery Uran ",
-    "Sahyadri Farma nursery Panvel ",
-    "Abhishek hightech nursery Dadar ",
-    "Tanuja Nursery Kharghar",
-    "Green Valley Nursery Thane",
-    "Shradha nurserey Ratnagiri"
-  ];
-  final recentnursery = [
-    "Tanuja Nursery",
-    "Green Valley Nursery",
-    "Shradha nurserey"
-  ];
+  final nursery = ["Fruit", "Vegetable", "Ornamental", "Forest", "Agriculture"];
+  final recentnursery = ["Fruit", "Vegetable", "Ornamental"];
 
   List<Widget>? buildActions(BuildContext context) {
     return [

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sanket/app_screen/Location_2.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -50,13 +49,18 @@ class MainDrawer extends StatelessWidget {
             Divider(
               color: Colors.black,
             ),
-            ListTile(
-              leading: Icon(Icons.account_box_rounded),
-              tileColor: Colors.blue[200],
-              title: Text(
-                "My Account",
-                style: TextStyle(
-                  fontSize: 17,
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/addproduct");
+              },
+              child: ListTile(
+                leading: Icon(Icons.account_box_rounded),
+                tileColor: Colors.blue[200],
+                title: Text(
+                  "My Account",
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
                 ),
               ),
             ),
