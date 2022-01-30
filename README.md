@@ -1,17 +1,8 @@
-# Project-AGVENTURE
+#AGVENTURE
 <img src="https://drive.google.com/uc?export=view&id=1YFWRLRvzVFR5CfP_inLaauDh4hqpk70P"  width="700" height="175"/>
 
-### Team name: AGVENTURE
-
-## Team members
-* SANKET HAKE - sankethake4847@gmail.com
-* ATHARVA YESANSURE - atharvayesansure812@gmail.com
 
 
-## Mentors
-* ABHAY UBHALE
-* SHIVAM PAWAR
-* SUDHANSHU
 
 ## OUR GOAL:
 Our goal is to support thousands of smallholder farmers and plant nursery owners across India, by providing them with a app who can sell their crops and various plants.
